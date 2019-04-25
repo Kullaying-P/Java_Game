@@ -1,90 +1,64 @@
-import java.io.*;
-import java.util.Scanner;
-public class Novice
-{
-    private int hp;
-    private int exp;
-    private int power;
-    private int maxHp;
-    private String job;
-    Bag bag;
-
-    public Novice()
-    {
-        hp = 500;
+/**
+ * Novice
+ */
+public class Novice {
+    protected int hp, exp, level, maxHp, maxExp, maxLevel, attack; 
+    protected String name, gender, pictureName;
+    public Novice(String name) {
+        maxHp = 200;
         exp = 0;
-        power = 1;
-        maxHp = 1000;
-        job = "Novice";
-        bag = new Bag();
+        level = 1;
+        maxLevel = 10;
+        maxExp = 50;
+        hp = maxHp;
+        attack = 40; 
+        gender = "";
+        pictureName = "";
+        this.name = name;
     }
-    public void attack()
-    {
-        exp = exp + 1;
-        this.hp -= 10;
-        if(exp == 10)
-        {
-            power = power + 1;
-            exp = 0;
-        }
-    }
-
-    public void increaseHP(int plusHP){
-        
-        if(hp + plusHP < maxHp)
-        {
-            this.hp += plusHP;
-        }
-        else if(hp + plusHP >= maxHp){
-            this.hp += (maxHp - hp);
-        }
-        gethp();
-    }
-
-    public int gethp()
-    {
+    public int getHp(){
         return hp;
     }
-
-    public int getexp()
-    {
+    public int getExp(){
         return exp;
     }
-
-    public int getpower()
-    {
-        return power;
+    public int getLevel(){
+        return level;
+    } 
+    public int getMaxHp(){
+        return maxHp;
     }
-
-    public String getjob()
-    {
-        return job;
+    public int getMaxExp(){
+        return maxExp;
+    }   
+    public int getMaxLevel(){
+        return maxLevel;
     }
-
-    public void setHp(int set)
-    {
-        hp += set;
+    public int getAttack(){
+        return attack;
     }
-
-    public void setExp(int set)
-    {
-        exp += set;
+    public String getName(){
+        return name;
     }
-
-    public void setPower(int set)
-    {
-        power += set;
+    public String getPicture(){
+        return pictureName;
     }
-
-    public void setJob(String set)
-    {
-        job = set;
+    public void getDamage(){
+        hp -= 20;
+        exp += 10; 
+        if(exp == maxExp){
+            level += 1;
+            exp = 0;
+        }
+        if(hp <= 0){
+            level -= 1;
+            hp = 0;
+        }
     }
-
-    public void setAll(int lastHp, int lastPower,Bag lastBag)
-    {
-        hp = lastHp;
-        power = lastPower;
-        bag = lastBag;
+    public void revive(){
+        hp = maxHp;
+    }
+    public String getGender(){
+        return gender;
     }
 }
